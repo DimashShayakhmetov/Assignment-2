@@ -232,7 +232,7 @@ public class MyLinkedList<T> implements MyList<T> {
                 if (curr != null) {
                     return true; // if there is one element
                 } else {
-                    return false; //
+                    return false; // Список закончился
                 }
             }
 
