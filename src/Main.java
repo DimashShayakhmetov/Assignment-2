@@ -3,7 +3,6 @@ public class Main {
         MyQueue<Integer> queue = new MyQueue<>();
         queue.add(1);
         queue.add(2);
-        queue.add(3);
 
 
     }
