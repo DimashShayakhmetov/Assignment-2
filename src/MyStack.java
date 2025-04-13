@@ -28,7 +28,6 @@ public class MyStack<T> {
         return list.size();
     }
 
-
     public Object[] toArray() {
         return list.toArray();
     }
