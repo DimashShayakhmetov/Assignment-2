@@ -1,9 +1,11 @@
 public class MyMinHeap<T extends Comparable<T>> {
     private MyArrayList<T> heap;
 
+    //public methods
+
     public MyMinHeap() {
         heap = new MyArrayList<>();
-    }
+    }//Creates a heap by initializing an internal list
 
     public boolean empty() {
         if(heap.size() == 0) {
@@ -24,7 +26,7 @@ public class MyMinHeap<T extends Comparable<T>> {
             throw new IllegalStateException("Heap is empty");
         }
         return heap.get(0);
-    }
+    }//returns a min element without deleting it
 
     public T extractMin() {
         if (heap.size() == 0) {
@@ -36,7 +38,7 @@ public class MyMinHeap<T extends Comparable<T>> {
         heap.removeLast();
         heapify(0);
         return min;
-    }
+    }//returns a min element with deleting it
 
     public void insert(T item) {
         heap.add(item);
@@ -44,11 +46,11 @@ public class MyMinHeap<T extends Comparable<T>> {
     }
 
 
-    //private mthods
+    //private methods
     private void heapify(int index) {
         int left = leftChildOf(index);
         int right = rightChildOf(index);
-        int smallest = index;
+        int smallest = index;//suppose that current element is smallest
 
         if (left < heap.size() && heap.get(left).compareTo(heap.get(smallest)) < 0) {
             smallest = left;
@@ -60,11 +62,11 @@ public class MyMinHeap<T extends Comparable<T>> {
         if (smallest != index) {
             swap(index, smallest);
             heapify(smallest);
-        }
+        }//if smallest changed swap
     }
 
     private void traverseUp(int index) {
-        while (index > 0 && heap.get(index).compareTo(heap.get(parentOf(index))) < 0) {
+        while (index > 0 && heap.get(index).compareTo(heap.get(parentOf(index))) < 0) { //while we did not get to root(index > 0) and our element less than parent
             swap(index, parentOf(index));
             index = parentOf(index);
         }
@@ -86,6 +88,25 @@ public class MyMinHeap<T extends Comparable<T>> {
         T temp = heap.get(index1);
         heap.set(index1, heap.get(index2));
         heap.set(index2, temp);
+    }
+
+    public Object[] toArray() {
+        return heap.toArray();
+    }
+    public void printHeap() {
+        Object[] array = this.toArray();
+        if (array.length == 0) {
+            System.out.println("[]");
+            return;
+        }
+        System.out.print("[");
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i]);
+            if (i < array.length - 1) {
+                System.out.print(", ");
+            }
+        }
+        System.out.println("]");
     }
 }
 

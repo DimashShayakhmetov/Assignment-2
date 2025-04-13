@@ -31,23 +31,16 @@ public class MyArrayList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException();
         }
         ensureCapacity();//check if the array is full
-        for (int i = size; i > index; i--) {//сдвиг элементов вправо - с конца
-            data[i] = data[i - 1];
+        for (int i = size; i > index; i--) {
+            data[i] = data[i - 1];//shifting elements to the right
         }
         data[index] = item;
         size++;
     }
-    //        MyArrayList<String> list = new MyArrayList<>();
-//        list.add("A");
-//        list.add("B");
-//        list.add("D");
-//        list.add(2, "C"); // вставим "C" на позицию 2
-//
-// результат: ["A", "B", "C", "D"]
 
     @Override
     public void addFirst(T item) {
-        add(0, item);//at this point we put the value to any position under the index в начало списка
+        add(0, item);
     }
 
     @Override
@@ -84,7 +77,7 @@ public class MyArrayList<T> implements MyList<T> {
         if (index < 0 || index >= size){
             throw new IndexOutOfBoundsException();
             }
-        for (int i = index; i < size - 1; i++) { //удаляет элемент и сдваигет все в лево
+        for (int i = index; i < size - 1; i++) { //removes an element and moves everything to the left
             data[i] = data[i + 1];
         }
         data[--size] = null;//удаление(ССЫЛКИ) после сдвига
@@ -136,10 +129,7 @@ public class MyArrayList<T> implements MyList<T> {
         return -1;
     }
 
-//    @Override
-//    public boolean exists(Object object) {
-//        return indexOf(object) != -1;
-//    }
+
     @Override
     public boolean exists(Object object) {
         for (int i = 0; i < size; i++) {
@@ -174,15 +164,20 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {   //for each loop
+        return new Iterator<T>() {
             int cursor = 0; //points to current object in array
 
-            public boolean hasNext() { //checks if there exists the next element
-                return cursor < size;
+            public boolean hasNext() {
+                if (cursor < size) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
-
             public T next() {
-                return (T) data[cursor++];
+                T item = (T) data[cursor];
+                cursor = cursor + 1;
+                return item;
             }
         };
     }

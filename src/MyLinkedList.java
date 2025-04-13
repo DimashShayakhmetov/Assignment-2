@@ -23,12 +23,12 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void addFirst(T item) {
         MyNode node = new MyNode(item);
-        if (head == null) {
+        if (head == null) { //check if the list is empty
             head = tail = node;
         } else {
-            node.next = head;
-            head.prev = node;
-            head = node;
+            node.next = head;  //the new node points to the current first
+            head.prev = node;  //the current first node now knows who is in front of it
+            head = node;       //and now the head of the list is our new node.
         }
         size++;
     }
@@ -82,7 +82,7 @@ public class MyLinkedList<T> implements MyList<T> {
         return getNode(index).data;
     }
 
-    private MyNode getNode(int index) {
+    private MyNode getNode(int index) { //for finding current element we need to analyze if the index is closer to head of tail
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
         }
@@ -123,7 +123,7 @@ public class MyLinkedList<T> implements MyList<T> {
         if (node.prev != null) {
             node.prev.next = node.next;
         }
-        else{ //it means that there are pervious element
+        else{
             head = node.next;
         }
         if (node.next != null) {
@@ -233,7 +233,7 @@ public class MyLinkedList<T> implements MyList<T> {
                 if (curr != null) {
                     return true; // if there is one element
                 } else {
-                    return false; // Список закончился
+                    return false;
                 }
             }
 

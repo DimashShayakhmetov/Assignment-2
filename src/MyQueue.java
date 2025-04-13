@@ -10,14 +10,14 @@ public class MyQueue<T> {
             return false;
         }
         list.addLast(item);
-        return true;
+        return true;//enqueue but returns false if item null
     }
     public void add(T item) {
         if (item == null) {
             throw new IllegalArgumentException("Null items are not allowed");
         }
         list.addLast(item);
-    }
+    }//same as offer but throws an exception
 
 
     //    public T dequeue() {
@@ -33,7 +33,7 @@ public class MyQueue<T> {
         T item = list.getFirst();
         list.removeFirst();
         return item;
-    }
+    }//dequeue but checks if the queue is empty and only then removes the element
     public T remove() {
         if (list.size() == 0) {
             throw new IllegalStateException("Queue is empty");
@@ -41,7 +41,7 @@ public class MyQueue<T> {
         T item = list.getFirst();
         list.removeFirst();
         return item;
-    }
+    }//same as poll but throws an exception
 
 
 
@@ -50,13 +50,13 @@ public class MyQueue<T> {
             return null;
             }
         return list.getFirst();
-    }
+    }//chosse peek element(will be chosen the first added element) because Queue - FIFO
     public T element() {
         if (list.size() == 0) {
             throw new IllegalStateException("Queue is empty");
         }
         return list.getFirst();
-    }
+    }//same as peek but throws an exceptin if queue is empty
 
     public boolean isEmpty() {
         return list.size() == 0;
@@ -67,7 +67,7 @@ public class MyQueue<T> {
     }
     public Object[] toArray() {
         return list.toArray();
-    }
+    }//converts the elements to array in order to print the queue
     public void printQueue(){
         Object[] arr = list.toArray();
         System.out.print("[");
