@@ -7,7 +7,5 @@ public class Main {
         queue.add(4);
         queue.add(5);
 
-        queue.printQueue();
-
     }
 }
