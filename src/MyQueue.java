@@ -20,12 +20,12 @@ public class MyQueue<T> {
     }
 
 
-
-//    public T dequeue() {
+    //    public T dequeue() {
 //        T item = list.getFirst();
 //        list.removeFirst();
 //        return item;
 //    }
+
 
     public T poll() {
         if (list.size() == 0)
